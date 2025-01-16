@@ -1,0 +1,2 @@
+export const AboutMsg =
+  "    Mycelium, es una organización que lleva 2 años en el mercado, enfocándose en ropa moderna y de calidad. La empresa cuenta con un equipo de 5 personas, quienes se encargan de las áreas de atención al cliente, ventas, logística y administración. La actividad principal de la empresa es la venta de ropa, con un énfasis especial en camisetas estampadas que combinan diseño y calidad, adaptándose a las tendencias actuales y a las preferencias de los clientes.";

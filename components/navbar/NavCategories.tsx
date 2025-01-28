@@ -5,7 +5,7 @@ const NavCategories = () => {
         <li>
           <a
             href="/products"
-            className="py-2 text-[#004d26] hover:border-b-2 hover:border-[#004d26]"
+            className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Hombres
           </a>
@@ -13,7 +13,7 @@ const NavCategories = () => {
         <li>
           <a
             href="/products"
-            className="py-2 text-[#004d26] hover:border-b-2 hover:border-[#004d26]"
+            className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Mujeres
           </a>
@@ -21,7 +21,7 @@ const NavCategories = () => {
         <li>
           <a
             href="/products"
-            className="py-2 text-[#004d26] hover:border-b-2 hover:border-[#004d26]"
+            className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Cosas
           </a>
@@ -29,7 +29,7 @@ const NavCategories = () => {
         <li>
           <a
             href="/about"
-            className="py-2 text-[#004d26] hover:border-b-2 hover:border-[#004d26]"
+            className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Nosotros
           </a>

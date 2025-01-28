@@ -6,7 +6,7 @@ import NavCategories from "./NavCategories";
 
 const Navbar = () => {
   return (
-    <nav className="border-b-2 border-[#004d26] bg-[#f2efeb] sticky top-0 z-50">
+    <nav className="border-b-4 border-zinc-300 bg-[#004d26] sticky top-0 z-50">
       <Container className="flex flex-col sm:flex-row sm:justify-between sm:items-center flex-wrap gap-4 py-8">
         <Logo />
         <NavCategories />

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -32,9 +32,6 @@ const filters = [
 const FilterContent = () => {
   const [priceRange, setPriceRange] = useState([1000, 500000]);
 
-  useEffect(() => {
-    console.log(priceRange);
-  }, [priceRange]);
   return (
     <>
       <Accordion type="single" collapsible className="w-full">

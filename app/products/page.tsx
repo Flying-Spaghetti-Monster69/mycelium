@@ -2,7 +2,13 @@ import FilterSidebar from "@/components/products/FilterSidebar";
 import ProductGrid from "@/components/products/ProductGrid";
 import { Separator } from "@/components/ui/separator";
 
-function ProductsPage() {
+function ProductsPage({
+  searchParams,
+}: {
+  searchParams: { order?: string; category?: string };
+}) {
+  const order = searchParams.order || "name-asc";
+  const category = searchParams.category || "hombres";
   return (
     <div className="container mx-auto">
       <div className="flex flex-col lg:flex-row gap-8">
@@ -11,7 +17,7 @@ function ProductsPage() {
         </div>
         <Separator orientation="vertical" className="hidden lg:block" />
         <div className="w-full lg:w-3/4">
-          <ProductGrid />
+          <ProductGrid order={order} category={category} />
         </div>
       </div>
     </div>

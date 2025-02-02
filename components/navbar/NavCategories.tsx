@@ -4,7 +4,7 @@ const NavCategories = () => {
       <ul className="flex flex-wrap gap-4">
         <li>
           <a
-            href="/products"
+            href="/products?category=hombres"
             className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Hombres
@@ -12,7 +12,7 @@ const NavCategories = () => {
         </li>
         <li>
           <a
-            href="/products"
+            href="/products?category=mujeres"
             className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Mujeres
@@ -20,7 +20,7 @@ const NavCategories = () => {
         </li>
         <li>
           <a
-            href="/products"
+            href="/products?category=cosas"
             className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Cosas

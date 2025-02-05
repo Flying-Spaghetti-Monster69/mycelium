@@ -15,12 +15,22 @@ async function main() {
         price: product.price,
         image_url: product.image_url,
         options: {
-          create: product.options, // Correctly nest the options
+          create: product.options.map((option) => ({
+            color_name: option.color_name,
+            color_hex: option.color_hex,
+            sizes: {
+              create: option.sizes.map((size) => ({
+                size: size.size,
+                quantity: size.quantity,
+              })),
+            },
+          })),
         },
       },
     });
   }
 }
+
 main()
   .then(async () => {
     await prisma.$disconnect();

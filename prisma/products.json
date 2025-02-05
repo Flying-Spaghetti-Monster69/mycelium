@@ -6,8 +6,16 @@
     "price": 98550.08,
     "image_url": "http://chicagotribune.com/elit/proin/interdum/mauris/non.jpg",
     "options": [
-      { "size": "XL", "color": "Violet", "quantity": 15 },
-      { "size": "M", "color": "Pink", "quantity": 13 }
+      {
+        "color_name": "Violet",
+        "color_hex": "#8A2BE2",
+        "sizes": [{ "size": "XL", "quantity": 15 }]
+      },
+      {
+        "color_name": "Pink",
+        "color_hex": "#FFC0CB",
+        "sizes": [{ "size": "M", "quantity": 13 }]
+      }
     ]
   },
   {
@@ -17,8 +25,16 @@
     "price": 68704.71,
     "image_url": "https://rambler.ru/donec/ut.jpg",
     "options": [
-      { "size": "L", "color": "Goldenrod", "quantity": 71 },
-      { "size": "M", "color": "Pink", "quantity": 13 }
+      {
+        "color_name": "Goldenrod",
+        "color_hex": "#DAA520",
+        "sizes": [{ "size": "L", "quantity": 71 }]
+      },
+      {
+        "color_name": "Pink",
+        "color_hex": "#FFC0CB",
+        "sizes": [{ "size": "M", "quantity": 13 }]
+      }
     ]
   },
   {
@@ -27,7 +43,13 @@
     "category": "cosas",
     "price": 88534.77,
     "image_url": "https://seattletimes.com/metus/aenean/fermentum/donec/ut/mauris/eget.aspx",
-    "options": [{ "size": "S", "color": "Yellow", "quantity": 49 }]
+    "options": [
+      {
+        "color_name": "Yellow",
+        "color_hex": "#FFFF00",
+        "sizes": [{ "size": "S", "quantity": 49 }]
+      }
+    ]
   },
   {
     "product_name": "snail",
@@ -36,9 +58,15 @@
     "price": 516.29,
     "image_url": "http://bigcartel.com/justo/eu.png",
     "options": [
-      { "size": "L", "color": "Pink", "quantity": 82 },
-      { "size": "M", "color": "Pink", "quantity": 13 },
-      { "size": "S", "color": "Pink", "quantity": 13 }
+      {
+        "color_name": "Pink",
+        "color_hex": "#FFC0CB",
+        "sizes": [
+          { "size": "L", "quantity": 82 },
+          { "size": "M", "quantity": 13 },
+          { "size": "S", "quantity": 13 }
+        ]
+      }
     ]
   },
   {
@@ -47,7 +75,13 @@
     "category": "mujeres",
     "price": 51490.35,
     "image_url": "http://sphinn.com/aliquet.aspx",
-    "options": [{ "size": "M", "color": "Maroon", "quantity": 4 }]
+    "options": [
+      {
+        "color_name": "Maroon",
+        "color_hex": "#800000",
+        "sizes": [{ "size": "M", "quantity": 4 }]
+      }
+    ]
   },
   {
     "product_name": "ant",
@@ -55,7 +89,13 @@
     "category": "cosas",
     "price": 45057.39,
     "image_url": "https://deliciousdays.com/condimentum.jpg",
-    "options": [{ "size": "XL", "color": "Fuscia", "quantity": 72 }]
+    "options": [
+      {
+        "color_name": "Fuscia",
+        "color_hex": "#FF00FF",
+        "sizes": [{ "size": "XL", "quantity": 72 }]
+      }
+    ]
   },
   {
     "product_name": "bird",
@@ -63,7 +103,13 @@
     "category": "mujeres",
     "price": 57966.13,
     "image_url": "https://hao123.com/ante/vestibulum/ante/ipsum.jsp",
-    "options": [{ "size": "L", "color": "Pink", "quantity": 92 }]
+    "options": [
+      {
+        "color_name": "Pink",
+        "color_hex": "#FFC0CB",
+        "sizes": [{ "size": "L", "quantity": 92 }]
+      }
+    ]
   },
   {
     "product_name": "Ms",
@@ -71,7 +117,13 @@
     "category": "cosas",
     "price": 40683.57,
     "image_url": "https://i2i.jp/mi.png",
-    "options": [{ "size": "S", "color": "Teal", "quantity": 41 }]
+    "options": [
+      {
+        "color_name": "Teal",
+        "color_hex": "#008080",
+        "sizes": [{ "size": "S", "quantity": 41 }]
+      }
+    ]
   },
   {
     "product_name": "mantis",
@@ -79,7 +131,13 @@
     "category": "hombres",
     "price": 35305.73,
     "image_url": "https://opensource.org/id/pretium/iaculis/diam/erat/fermentum.json",
-    "options": [{ "size": "XL", "color": "Goldenrod", "quantity": 57 }]
+    "options": [
+      {
+        "color_name": "Goldenrod",
+        "color_hex": "#DAA520",
+        "sizes": [{ "size": "XL", "quantity": 57 }]
+      }
+    ]
   },
   {
     "product_name": "frog",
@@ -87,6 +145,12 @@
     "category": "cosas",
     "price": 11343.74,
     "image_url": "http://webeden.co.uk/primis/in/faucibus/orci/luctus/et/ultrices.js",
-    "options": [{ "size": "M", "color": "Green", "quantity": 9 }]
+    "options": [
+      {
+        "color_name": "Green",
+        "color_hex": "#008000",
+        "sizes": [{ "size": "M", "quantity": 9 }]
+      }
+    ]
   }
 ]

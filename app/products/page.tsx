@@ -2,14 +2,12 @@ import FilterSidebar from "@/components/products/FilterSidebar";
 import ProductGrid from "@/components/products/ProductGrid";
 import { Separator } from "@/components/ui/separator";
 
-async function ProductsPage(
-  props: {
-    searchParams: Promise<{ order?: string; category?: string }>;
-  }
-) {
+async function ProductsPage(props: {
+  searchParams: Promise<{ order?: string; category?: string }>;
+}) {
   const searchParams = await props.searchParams;
   const order = searchParams.order || "name-asc";
-  const category = searchParams.category || "hombres";
+  const category = searchParams.category || "";
   return (
     <div className="container mx-auto">
       <div className="flex flex-col lg:flex-row gap-8">

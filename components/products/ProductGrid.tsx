@@ -1,6 +1,7 @@
 import { fetchProducts } from "@/utils/actions";
 import ProductCard from "./ProductCard";
 import OrderSelect from "./OrderSelect";
+import { Suspense } from "react";
 
 export default async function ProductGrid({
   order,
@@ -18,9 +19,11 @@ export default async function ProductGrid({
         <OrderSelect order={order} category={category} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <Suspense>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </Suspense>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import db from "@/utils/db";
 import { Prisma } from "@prisma/client";
+import { redirect } from "next/navigation";
 
 export const fetchProducts = async ({
   category,
@@ -13,28 +14,35 @@ export const fetchProducts = async ({
 
   if (field === "name" || field === "price") {
     const validDirection =
-      direction === "asc" || direction === "desc" ? direction : "asc"; // Default to 'asc' if direction is invalid
+      direction === "asc" || direction === "desc" ? direction : "asc";
 
     orderBy.push({
       [field === "name" ? "product_name" : "price"]: validDirection,
     });
   }
 
+  const whereClause: Prisma.ProductWhereInput = {};
+  if (category) {
+    whereClause.category = category;
+  }
+
   const products = await db.product.findMany({
-    where: {
-      category: category,
-    },
+    where: whereClause,
     orderBy: orderBy.length > 0 ? orderBy : { product_name: "asc" }, // Only include orderBy if it's not empty
   });
 
   return products;
 };
 
-export const fetchProductById = async (id: number) => {
+export const fetchProductById = async (id: string) => {
+  const productId = parseInt(id);
   const product = await db.product.findUnique({
     where: {
-      id,
+      id: productId,
+    },
+    include: {
+      options: { include: { sizes: true } },
     },
   });
-  return product;
+  return product ? product : redirect("/products");
 };

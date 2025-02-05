@@ -2,8 +2,10 @@ import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 interface Product {
+  id: number;
   product_name: string;
   description: string;
   category: string;
@@ -28,9 +30,11 @@ export default function ProductCard({ product }: { product: Product }) {
       <CardFooter className="flex flex-col items-start p-4">
         <h3 className="font-semibold text-lg mb-2">{product.product_name}</h3>
         <p className="text-gray-600 mb-4">${product.price.toFixed(2)}</p>
-        <Button variant="outline" className="w-full mb-2">
-          View
-        </Button>
+        <Link className="w-full mb-2" href={`/products/${product.id}`} passHref>
+          <Button className="w-full" variant="outline">
+            View
+          </Button>
+        </Link>
         <Button className="w-full">Add to Cart</Button>
       </CardFooter>
     </Card>

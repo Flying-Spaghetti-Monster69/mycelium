@@ -1,11 +1,12 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model Product {
@@ -20,9 +21,17 @@ model Product {
 
 model Product_options {
   id          Int      @id @default(autoincrement())
-  size        String
-  color       String
-  quantity    Int
+  color_name      String
+  color_hex      String
+  sizes       Color_quantities[]
   productId   Int      // Foreign key to Product
   product     Product  @relation(fields: [productId], references: [id]) // Relationship to Product
+}
+
+model Color_quantities {
+  id          Int      @id @default(autoincrement())
+  size        String
+  quantity    Int
+  colorId     Int      // Foreign key to Product_options
+  color       Product_options  @relation(fields: [colorId], references: [id]) // Relationship to Product_options
 }

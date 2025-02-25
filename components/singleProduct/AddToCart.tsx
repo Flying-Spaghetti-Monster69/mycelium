@@ -1,6 +1,7 @@
 import { Button } from "../ui/button";
-//{ id }: { id: string }
-const AddToCart = () => {
+
+const AddToCart = ({ id }: { id: string }) => {
+  console.log(id);
   return (
     <Button className="capitalize mt-8" size="lg">
       Add to cart

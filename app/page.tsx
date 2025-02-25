@@ -8,13 +8,13 @@ function HomePage() {
         className="flex justify-center items-center flex-col gap-12 mt-20"
         style={{ filter: "brightness(1)" }}
       >
-        <h1 className="text-6xl font-bold text-primary bg-transparent bg-white bg-opacity-70 p-4  rounded-3xl flex flex-col">
+        <h1 className="text-6xl font-bold text-primary bg-transparent bg-green-50 bg-opacity-70 p-4  rounded-3xl flex flex-col">
           Mycelium
           <span className="text-3xl mx-auto mt-2 text-amber-900">
             Go back to the roots
           </span>
         </h1>
-        <p className="text-2xl font-semibold text-center bg-transparent bg-white bg-opacity-70 p-4  rounded-xl">
+        <p className="text-2xl font-semibold text-center bg-transparent bg-green-50 bg-opacity-70 p-4  rounded-xl">
           Creamos ropa con creatividad y naturaleza en mente.
         </p>
       </div>

@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   const product = await fetchProductById(params.id);
-  const { product_name, price, description, image_url, options } = product;
+  const { product_name, price, description, options } = product;
   const formattedPrice = new Intl.NumberFormat("es-CO", {
     style: "currency",
     currency: "COP",

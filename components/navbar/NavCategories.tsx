@@ -1,38 +1,40 @@
+import Link from "next/link";
+
 const NavCategories = () => {
   return (
     <section>
       <ul className="flex flex-wrap gap-4">
         <li>
-          <a
+          <Link
             href="/products?category=hombres"
             className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Hombres
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             href="/products?category=mujeres"
             className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Mujeres
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             href="/products?category=cosas"
             className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Cosas
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             href="/about"
             className="py-2 text-white hover:border-b-2 hover:border-white"
           >
             Nosotros
-          </a>
+          </Link>
         </li>
       </ul>
     </section>

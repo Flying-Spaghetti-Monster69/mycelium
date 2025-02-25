@@ -1,6 +1,6 @@
 function HomePage() {
   return (
-    <main className="bg-[url(/images/background2.jpg)] bg-cover bg-center w-full h-[calc(100vh-112px)] overflow-hidden">
+    <main className="bg-[url(/images/background2.jpg)] bg-cover bg-center w-full h-[calc(100vh-113.6px)] overflow-hidden">
       <div className="flex justify-center items-center flex-col gap-12 mt-20">
         <h1 className="text-6xl text-primary bg-white p-4 rounded">Mycelium</h1>
         <div className="bg-white p-4 rounded ">

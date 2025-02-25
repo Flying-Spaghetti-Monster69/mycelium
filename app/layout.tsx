@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Oranienbaum } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -15,6 +15,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const oranienbaum = Oranienbaum({ weight: "400", subsets: ["latin"] });
+
 export const metadata: Metadata = {
   title: "Mycelium",
   description: "Clothing store",
@@ -28,9 +30,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="es">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#f5f5dc]`}
-        >
+        <body className={`${oranienbaum.className} antialiased bg-[#f5f5dc]`}>
           <Providers>
             <Navbar />
             {children}

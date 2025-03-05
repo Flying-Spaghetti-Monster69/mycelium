@@ -22,7 +22,6 @@ const getAdminUser = async () => {
 };
 
 const renderError = (error: unknown): { message: string } => {
-  console.log(error);
   return {
     message: error instanceof Error ? error.message : "an error occurred",
   };
@@ -152,6 +151,13 @@ export const fetchAdminProductDetails = async (productId: number) => {
     where: {
       id: productId,
     },
+    include: {
+      options: {
+        include: {
+          sizes: true,
+        },
+      },
+    },
   });
   if (!product) redirect("/admin/products");
   return product;
@@ -166,6 +172,15 @@ export const updateProductAction = async (
     let productId: string | number = formData.get("id") as string;
     productId = parseInt(productId);
     const rawData = Object.fromEntries(formData);
+    // Parse options if it's a string
+    if (typeof rawData.options === "string") {
+      try {
+        rawData.options = JSON.parse(rawData.options);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error) {
+        throw new Error("Invalid options format");
+      }
+    }
     const validatedFields = validateWithZodSchema(productSchema, rawData);
 
     const { options, ...productFields } = validatedFields;
@@ -286,7 +301,7 @@ export const fetchOrCreateCart = async ({
 };
 
 const updateOrCreateCartItem = async ({
-  productId,
+  productOptionId,
   cartId,
   amount,
 }: {
@@ -296,7 +311,7 @@ const updateOrCreateCartItem = async ({
 }) => {
   let cartItem = await db.cartItem.findFirst({
     where: {
-      productId,
+      productOptionId,
       cartId,
     },
   });
@@ -311,7 +326,7 @@ const updateOrCreateCartItem = async ({
     });
   } else {
     cartItem = await db.cartItem.create({
-      data: { amount, productId, cartId },
+      data: { amount, productOptionId, cartId },
     });
   }
 };
@@ -357,12 +372,14 @@ export const updateCart = async (cart: Cart) => {
 export const addToCartAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
   try {
-    let productId: string | number = formData.get("productId") as string;
-    productId = parseInt(productId);
+    let productOptionId: string | number = formData.get(
+      "productSizeId"
+    ) as string;
+    productOptionId = parseInt(productOptionId);
     const amount = Number(formData.get("amount"));
-    await fetchProduct(productId);
+    await fetchProduct(productOptionId);
     const cart = await fetchOrCreateCart({ userId: user.id });
-    await updateOrCreateCartItem({ productId, cartId: cart.id, amount });
+    await updateOrCreateCartItem({ productOptionId, cartId: cart.id, amount });
     await updateCart(cart);
   } catch (error) {
     return renderError(error);

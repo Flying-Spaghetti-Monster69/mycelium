@@ -14,10 +14,14 @@ type InputRow = {
   sizes: Array<{ size: string; quantity: number }>;
 };
 
-export default function AddOption() {
-  const [rows, setRows] = useState<InputRow[]>([
-    { color_hex: "#000000", color_name: "", sizes: [] },
-  ]);
+interface AddOptionProps {
+  defaultValue?: InputRow[];
+}
+
+export default function AddOption({ defaultValue }: AddOptionProps) {
+  const [rows, setRows] = useState<InputRow[]>(
+    defaultValue || [{ color_hex: "#000000", color_name: "", sizes: [] }]
+  );
 
   const addRow = () => {
     setRows([...rows, { color_hex: "#000000", color_name: "", sizes: [] }]);

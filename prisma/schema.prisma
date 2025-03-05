@@ -17,7 +17,6 @@ model Product {
   price       Int
   image_url   String
   options  Product_options[]  
-  cartItems CartItem[]
   clerkId  String
 }
 
@@ -27,7 +26,7 @@ model Product_options {
   color_hex      String
   sizes       Color_quantities[]
   productId   Int      // Foreign key to Product
-  product     Product  @relation(fields: [productId], references: [id]) // Relationship to Product
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade) // Relationship to Product
 }
 
 model Color_quantities {
@@ -35,7 +34,8 @@ model Color_quantities {
   size        String
   quantity    Int
   colorId     Int      // Foreign key to Product_options
-  color       Product_options  @relation(fields: [colorId], references: [id]) // Relationship to Product_options
+  cartItems CartItem[]
+  color       Product_options  @relation(fields: [colorId], references: [id], onDelete: Cascade, onUpdate: Cascade) // Relationship to Product_options
 }
 
 model Cart {
@@ -54,9 +54,9 @@ model Cart {
 
 model CartItem {
   id        Int   @id @default(autoincrement())
-  productId Int
-  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  cart     Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productOptionId Int
+  product     Color_quantities  @relation(fields: [productOptionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  cart     Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   cartId   Int
   amount  Int
   createdAt DateTime @default(now())

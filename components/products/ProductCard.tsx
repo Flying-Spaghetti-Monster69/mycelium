@@ -27,10 +27,14 @@ export default function ProductCard({ product }: { product: Product }) {
           <Badge className="absolute top-2 right-2">New</Badge>
         </div>
       </CardContent>
-      <CardFooter className="flex flex-col items-start p-4">
+      <CardFooter className="flex flex-col items-start p-4 h-max">
         <h3 className="font-semibold text-lg mb-2">{product.product_name}</h3>
         <p className="text-gray-600 mb-4">${product.price.toFixed(2)}</p>
-        <Link className="w-full mb-2" href={`/products/${product.id}`} passHref>
+        <Link
+          className="w-full mb-2 mt-auto"
+          href={`/products/${product.id}`}
+          passHref
+        >
           <Button className="w-full" variant="outline">
             View
           </Button>

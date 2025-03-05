@@ -19,7 +19,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <CardContent className="p-0">
         <div className="relative h-48 w-full">
           <Image
-            src={"/images/default.jpg"}
+            src={product.image_url || "/images/default.jpg"}
             alt={product.product_name}
             fill
             className="object-cover"

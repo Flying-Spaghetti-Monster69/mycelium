@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="es">
-        <body className={`${oranienbaum.className} antialiased bg-[#f5f5dc]`}>
+        <body
+          className={`${oranienbaum.className} text-lg antialiased bg-[#f5f5dc]`}
+        >
           <Providers>
             <Navbar />
             {children}

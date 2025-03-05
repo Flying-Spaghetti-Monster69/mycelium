@@ -14,6 +14,10 @@ async function main() {
         category: product.category,
         price: product.price,
         image_url: product.image_url,
+        clerkId: product.clerkId,
+        cartItems: {
+          create: [],
+        },
         options: {
           create: product.options.map((option) => ({
             color_name: option.color_name,
@@ -33,6 +37,7 @@ async function main() {
 
 main()
   .then(async () => {
+    console.log("Seed completed");
     await prisma.$disconnect();
   })
   .catch(async (e) => {

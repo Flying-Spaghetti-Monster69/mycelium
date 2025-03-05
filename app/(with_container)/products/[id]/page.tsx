@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   const product = await fetchProductById(params.id);
-  const { product_name, price, description, options } = product;
+  const { product_name, price, description, image_url, options } = product;
   const formattedPrice = new Intl.NumberFormat("es-CO", {
     style: "currency",
     currency: "COP",
@@ -18,7 +18,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
       <div className="mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16">
         <div className="relative h-full">
           <Image
-            src={"/images/default.jpg"}
+            src={image_url || "/images/default.jpg"}
             alt={product_name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

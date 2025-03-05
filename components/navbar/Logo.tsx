@@ -1,19 +1,22 @@
-import { GiPlantRoots } from "react-icons/gi";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const Logo = () => {
   return (
     <Button
       size="icon"
-      className="w-16 h-12 hover:bg-green-700"
+      className="w-fit h-fit hover:bg-green-700"
       variant="ghost"
       asChild
     >
-      <Link href="/">
-        <GiPlantRoots
-          style={{ width: "100%", height: "100%", padding: "0.25rem" }}
-          className="text-white hover:text-green-800 transition-colors"
+      <Link href="/" className="w-16 h-10 p-[-1rem]">
+        <Image
+          src="/images/Logo1.png"
+          width={64}
+          height={60}
+          alt="Mycelium"
+          className=" scale-125"
         />
       </Link>
     </Button>

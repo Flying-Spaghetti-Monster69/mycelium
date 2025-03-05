@@ -17,6 +17,8 @@ model Product {
   price       Int
   image_url   String
   options  Product_options[]  
+  cartItems CartItem[]
+  clerkId  String
 }
 
 model Product_options {
@@ -34,4 +36,43 @@ model Color_quantities {
   quantity    Int
   colorId     Int      // Foreign key to Product_options
   color       Product_options  @relation(fields: [colorId], references: [id]) // Relationship to Product_options
+}
+
+model Cart {
+  id        Int   @id @default(autoincrement())
+  clerkId  String
+  cartItems CartItem[]
+  numItemsInCart Int @default(0)
+  cartTotal Int @default(0)
+  shipping Int @default(5)
+  tax Int @default(0)
+  taxRate Float @default(0.1)
+  orderTotal Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id        Int   @id @default(autoincrement())
+  productId Int
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  cart     Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId   Int
+  amount  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model Order {
+  id        Int   @id @default(autoincrement())
+  clerkId  String
+  products Int  @default(0)
+  orderTotal Int @default(0)
+  tax Int @default(0)
+  shipping Int @default(0)
+  email String
+  isPaid Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

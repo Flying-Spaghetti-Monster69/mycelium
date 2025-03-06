@@ -1,6 +1,5 @@
-import AddToCart from "@/components/singleProduct/AddToCart";
 import BreadCrumbs from "@/components/singleProduct/BreadCrumbs";
-import ColorSelector from "@/components/singleProduct/ColorSelector";
+import ChoosePurchase from "@/components/singleProduct/ChoosePurchase";
 import { fetchProductById } from "@/utils/actions";
 import Image from "next/image";
 
@@ -35,8 +34,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
           </h4>
           <p className="mt-6 leading-8 text-muted-foreground">{description}</p>
           <div className="flex flex-col gap-y-1">
-            <ColorSelector options={options} />
-            <AddToCart id={params.id} />
+            <ChoosePurchase options={options} />
           </div>
         </div>
       </div>

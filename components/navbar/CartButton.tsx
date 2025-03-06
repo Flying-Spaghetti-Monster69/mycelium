@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { MdOutlineShoppingBag } from "react-icons/md";
+import { fetchCartItems } from "@/utils/actions";
 const CartButton = async () => {
-  const numsItemsInCart = 0;
+  const numsItemsInCart = await fetchCartItems();
 
   return (
     <Button

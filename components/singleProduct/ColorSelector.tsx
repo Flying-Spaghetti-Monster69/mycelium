@@ -1,5 +1,3 @@
-"use client";
-import { useState } from "react";
 import { Button } from "../ui/button";
 
 type SizeOption = {
@@ -19,10 +17,23 @@ type ColorOption = {
 type Option = ColorOption & {
   sizes: SizeOption[];
 };
+type SelectedOptions = {
+  colorIndex: number;
+  sizeIndex: number;
+};
 
-const ColorSelector = ({ options }: { options: Option[] }) => {
-  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-  const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
+interface ColorSelectorProps {
+  options: Option[];
+  selectedOptions: SelectedOptions;
+  onOptionsChange: (options: SelectedOptions) => void;
+}
+
+const ColorSelector = ({
+  options,
+  selectedOptions,
+  onOptionsChange,
+}: ColorSelectorProps) => {
+  const { colorIndex, sizeIndex } = selectedOptions;
 
   return (
     <>
@@ -32,14 +43,13 @@ const ColorSelector = ({ options }: { options: Option[] }) => {
             <button
               key={option.id}
               className={
-                selectedColorIndex === index
+                colorIndex === index
                   ? `border-primary border-2 w-6 h-6`
                   : `border-white border-2 w-6 h-6`
               }
               style={{ backgroundColor: option.color_hex }}
               onClick={() => {
-                setSelectedSizeIndex(0);
-                setSelectedColorIndex(index);
+                onOptionsChange({ colorIndex: index, sizeIndex: 0 });
               }}
             ></button>
           );
@@ -47,12 +57,12 @@ const ColorSelector = ({ options }: { options: Option[] }) => {
       </div>
 
       <div className="flex gap-2 mt-4">
-        {options[selectedColorIndex].sizes.map((size, index) => {
+        {options[colorIndex].sizes.map((size, index) => {
           return (
             <Button
-              variant={selectedSizeIndex === index ? "default" : "secondary"}
+              variant={sizeIndex === index ? "default" : "secondary"}
               key={size.id}
-              onClick={() => setSelectedSizeIndex(index)}
+              onClick={() => onOptionsChange({ colorIndex, sizeIndex: index })}
             >
               {size.size}
             </Button>
@@ -60,7 +70,7 @@ const ColorSelector = ({ options }: { options: Option[] }) => {
         })}
       </div>
       <p className="text-lg my-2">
-        Stock: {options[selectedColorIndex].sizes[selectedSizeIndex].quantity}
+        Stock: {options[colorIndex].sizes[sizeIndex].quantity}
       </p>
     </>
   );

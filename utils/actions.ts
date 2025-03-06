@@ -253,16 +253,25 @@ export const fetchCartItems = async () => {
   return cart?.numItemsInCart || 0;
 };
 
-const fetchProduct = async (productId: number) => {
-  const product = await db.product.findUnique({
+export const fetchProductBySizeId = async (sizeId: number) => {
+  const size = await db.color_quantities.findUnique({
     where: {
-      id: productId,
+      id: sizeId,
+    },
+    include: {
+      color: {
+        include: {
+          product: true,
+        },
+      },
     },
   });
-  if (!product) {
-    throw new Error("Product not found");
+
+  if (!size) {
+    throw new Error("Size option not found");
   }
-  return product;
+
+  return size.color.product;
 };
 
 const includeProductClause = {
@@ -301,17 +310,17 @@ export const fetchOrCreateCart = async ({
 };
 
 const updateOrCreateCartItem = async ({
-  productOptionId,
+  productSizeId,
   cartId,
   amount,
 }: {
-  productId: number;
+  productSizeId: number;
   cartId: number;
   amount: number;
 }) => {
   let cartItem = await db.cartItem.findFirst({
     where: {
-      productOptionId,
+      productOptionId: productSizeId,
       cartId,
     },
   });
@@ -326,7 +335,7 @@ const updateOrCreateCartItem = async ({
     });
   } else {
     cartItem = await db.cartItem.create({
-      data: { amount, productOptionId, cartId },
+      data: { amount, productOptionId: productSizeId, cartId },
     });
   }
 };
@@ -337,7 +346,15 @@ export const updateCart = async (cart: Cart) => {
       cartId: cart.id,
     },
     include: {
-      product: true,
+      product: {
+        include: {
+          color: {
+            include: {
+              product: true,
+            },
+          },
+        },
+      },
     },
     orderBy: {
       createdAt: "asc",
@@ -348,7 +365,7 @@ export const updateCart = async (cart: Cart) => {
 
   for (const item of cartItems) {
     numItemsInCart += item.amount;
-    cartTotal += item.amount * item.product.price;
+    cartTotal += item.amount * item.product.color.product.price;
   }
   const tax = cart.taxRate * cartTotal;
   const shipping = cartTotal ? cart.shipping : 0;
@@ -369,17 +386,29 @@ export const updateCart = async (cart: Cart) => {
   return { cartItems, currentCart };
 };
 
+const fetchSize = async (productSizeId: number) => {
+  const product = await db.color_quantities.findUnique({
+    where: {
+      id: productSizeId,
+    },
+  });
+  if (!product) {
+    throw new Error("Product not found");
+  }
+  return product;
+};
+
 export const addToCartAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
   try {
-    let productOptionId: string | number = formData.get(
+    let productSizeId: string | number = formData.get(
       "productSizeId"
     ) as string;
-    productOptionId = parseInt(productOptionId);
+    productSizeId = parseInt(productSizeId);
     const amount = Number(formData.get("amount"));
-    await fetchProduct(productOptionId);
+    await fetchSize(productSizeId);
     const cart = await fetchOrCreateCart({ userId: user.id });
-    await updateOrCreateCartItem({ productOptionId, cartId: cart.id, amount });
+    await updateOrCreateCartItem({ productSizeId, cartId: cart.id, amount });
     await updateCart(cart);
   } catch (error) {
     return renderError(error);
